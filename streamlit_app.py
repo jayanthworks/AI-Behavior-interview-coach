@@ -4,6 +4,7 @@ import time
 import requests
 import json
 from huggingface_hub import HfApi, InferenceClient
+import os
 
 # Initialize session state
 if 'session_started' not in st.session_state:
@@ -18,7 +19,7 @@ if 'is_recording' not in st.session_state:
 # Initialize Hugging Face API
 @st.cache_resource
 def get_hf_client():
-    TOKEN = "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"
+    TOKEN = "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"
     return InferenceClient(token=TOKEN)
 
 def generate_question_with_hf():
@@ -70,15 +71,6 @@ def generate_question_with_hf():
         st.error(f"❌ Failed to generate AI question: {str(e)}")
         return None
 
-
-def record_audio():
-    """Simulate audio recording"""
-    st.session_state.is_recording = True
-    st.session_state.recorded_response = "Recording in progress..."
-    time.sleep(2)
-    st.session_state.recorded_response = "Sample recorded response: I believe that..."
-    st.session_state.is_recording = False
-
 # Main app logic
 if not st.session_state.session_started:
     # Welcome page with Start Session button
@@ -110,36 +102,32 @@ else:
     
     # Change Question button with loading state
     if st.button("🔄 Generate New Question", type="secondary"):
-        with st.spinner("�� AI is generating a new question..."):
+        with st.spinner("🤖 AI is generating a new question..."):
             st.session_state.current_question = generate_question_with_hf()
             st.session_state.recorded_response = ""
         st.rerun()
     
     st.markdown("---")
     
-    # Recording section
+    # Voice Recording section
     st.subheader("🎙️ Record Your Response")
     
-    col1, col2 = st.columns(2)
+    # Audio input widget (has built-in record/stop functionality)
+    audio = st.audio_input("Record your audio response")
     
-    with col1:
-        if st.button("��️ Start Recording", type="primary", disabled=st.session_state.is_recording):
-            record_audio()
-            st.rerun()
-    
-    with col2:
-        if st.button("⏹️ Stop Recording", disabled=not st.session_state.is_recording):
-            st.session_state.is_recording = False
-            st.rerun()
-    
-    # Show recording status
-    if st.session_state.is_recording:
-        st.warning("🔴 Recording in progress...")
-    
-    # Display recorded response
-    if st.session_state.recorded_response:
-        st.subheader("📝 Your Recorded Response:")
-        st.text_area("Response:", value=st.session_state.recorded_response, height=150, disabled=True)
+    if audio:
+        # Save the recorded audio
+        with open("interview_response.wav", "wb") as f:
+            f.write(audio.getbuffer())
+        
+        # Play the recorded audio
+        st.audio(audio, format="audio/wav")
+        
+        # Show file info
+        if os.path.exists("interview_response.wav"):
+            file_size = os.path.getsize("interview_response.wav")
+            st.success(f"✅ Audio recorded and saved! ({file_size} bytes)")
+            st.session_state.recorded_response = "Audio response recorded successfully"
     
     # Manual text input as alternative
     st.subheader("✍️ Or Type Your Response:")
@@ -148,7 +136,7 @@ else:
     st.markdown("---")
     
     # Submit section
-    st.subheader("�� Submit Response")
+    st.subheader("📤 Submit Response")
     
     if st.button("✅ Submit Response", type="primary", use_container_width=True):
         if st.session_state.recorded_response or manual_response:
@@ -156,9 +144,11 @@ else:
             st.balloons()
             
             # Show submitted response
-            st.subheader("�� Submitted Response:")
-            submitted_text = manual_response if manual_response else st.session_state.recorded_response
-            st.write(submitted_text)
+            st.subheader("📄 Submitted Response:")
+            if manual_response:
+                st.write(manual_response)
+            else:
+                st.write("Audio response recorded and submitted")
             
             # Option to continue with new question
             if st.button("🔄 Next AI Question"):
@@ -171,4 +161,4 @@ else:
     
     # Session info
     st.markdown("---")
-    st.caption("�� Powered by Hugging Face AI models! Questions are dynamically generated for a unique practice experience.")
+    st.caption("🤖 Powered by Hugging Face AI models! Questions are dynamically generated for a unique practice experience.")
