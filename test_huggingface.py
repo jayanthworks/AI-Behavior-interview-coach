@@ -2,7 +2,7 @@ import os
 from huggingface_hub import InferenceClient
 
 # Replace with your actual token
-TOKEN = "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"
+TOKEN = "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"
 
 client = InferenceClient(token=TOKEN)
 
