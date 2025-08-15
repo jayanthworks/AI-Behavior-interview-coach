@@ -1,0 +1,56 @@
+[
+  {
+    "user_id": "70a116a4",
+    "question_id": 4,
+    "response_id": 1,
+    "question_text": "\"Can you describe a time when you encountered a complex problem at work and walk us through the steps you took to resolve it?\"?",
+    "timestamp": "20250815_035402",
+    "filename": "user_70a116a4_q4_r1_20250815_035402.wav",
+    "file_path": "recordings\\user_70a116a4_q4_r1_20250815_035402.wav"
+  },
+  {
+    "user_id": "70a116a4",
+    "question_id": 4,
+    "response_id": 1,
+    "question_text": "\"Can you describe a time when you encountered a complex problem at work and walk us through the steps you took to resolve it?\"?",
+    "timestamp": "20250815_035438",
+    "filename": "user_70a116a4_q4_r1_20250815_035438.wav",
+    "file_path": "recordings\\user_70a116a4_q4_r1_20250815_035438.wav"
+  },
+  {
+    "user_id": "70a116a4",
+    "question_id": 5,
+    "response_id": 1,
+    "question_text": "\"Can you describe a time when you had to meet a tight deadline or handle a high-priority task, and how you ensured it was completed successfully and on time?\"?",
+    "timestamp": "20250815_035845",
+    "filename": "user_70a116a4_q5_r1_20250815_035845.wav",
+    "file_path": "recordings\\user_70a116a4_q5_r1_20250815_035845.wav"
+  },
+  {
+    "user_id": "70a116a4",
+    "question_id": 5,
+    "response_id": 1,
+    "question_text": "\"Can you describe a time when you had to meet a tight deadline or handle a high-priority task, and how you ensured it was completed successfully and on time?\"?",
+    "timestamp": "20250815_035906",
+    "filename": "user_70a116a4_q5_r1_20250815_035906.wav",
+    "file_path": "recordings\\user_70a116a4_q5_r1_20250815_035906.wav"
+  },
+  {
+    "user_id": "70a116a4",
+    "question_id": 7,
+    "response_id": 1,
+    "question_text": "\"Can you describe a time when you had to lead a team through a challenging project? How did you foster collaboration and ensure everyone\u2019s contributions aligned with the team\u2019s goals?\"?",
+    "timestamp": "20250815_040402",
+    "filename": "user_70a116a4_q7_r1_20250815_040402.wav",
+    "file_path": "recordings\\user_70a116a4_q7_r1_20250815_040402.wav"
+  },
+  {
+    "user_id": "70a116a4",
+    "question_id": 7,
+    "response_id": 1,
+    "question_text": "\"Can you describe a time when you had to lead a team through a challenging project? How did you foster collaboration and ensure everyone\u2019s contributions aligned with the team\u2019s goals?\"?",
+    "timestamp": "20250815_040414",
+    "filename": "user_70a116a4_q7_r1_20250815_040414.wav",
+    "file_path": "recordings\\user_70a116a4_q7_r1_20250815_040414.wav"
+  }
+]
